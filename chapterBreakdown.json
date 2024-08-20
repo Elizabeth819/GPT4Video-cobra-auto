@@ -1,0 +1,85 @@
+{
+    "Chapter 1: A new beginning": {
+        "title": "Chapter 1: A new beginning",
+        "start_frame": "0.0s",
+        "end_frame": "20.0s",
+        "scenes": [
+            {
+                "title": "Scene 1: Morning Commute",
+                "description": "A car is driving through a city street with buildings on both sides. Pedestrians are seen walking, and other vehicles are on the road. The traffic light is green. A white van is turning left at an intersection."
+            },
+            {
+                "title": "Scene 2: Busy Intersection",
+                "description": "Continuing the urban journey, the car approaches a busier intersection. More pedestrians are visible, a white truck is visible on the left side, and a green traffic light illuminates the scene, with several cars lined up on the street ahead."
+            },
+            {
+                "title": "Scene 3: Pedestrians and Traffic",
+                "description": "The car is stopped at the intersection, where multiple pedestrians are visible, including a woman in a turquoise sweater and a man in business attire. The traffic light is green, and parked cars line the street."
+            },
+            {
+                "title": "Scene 4: Crosswalk Activity",
+                "description": "The car is waiting at a crosswalk. A woman in a coat is crossing the street, while a man with glasses, holding a blue folder, waits at the corner. Various shops and a sign for a one-way street are visible."
+            },
+            {
+                "title": "Scene 5: Pedestrian and Vehicle Standoff",
+                "description": "The car is stopped at a crosswalk where a pedestrian, a man in business attire, gestures as if to indicate he is crossing. There is a white truck and a yellow school bus parked on the left side while additional pedestrians walk on the sidewalk."
+            },
+            {
+                "title": "Scene 6: City Drive",
+                "description": "The car continues driving through the city, passing a parked yellow school bus and a white box truck. Tall buildings line the street as the cityscape remains active."
+            },
+            {
+                "title": "Scene 7: School Zone",
+                "description": "The car enters a school zone area, indicated by the road markings 'SCHOOL' on the pavement. Tall buildings surround the street, and a yellow school bus is visible on the right side."
+            },
+            {
+                "title": "Scene 8: Downtown Traffic",
+                "description": "The car approaches another intersection in the downtown area. The street is lined with various shops, and several vehicles are visible on the road. Pedestrians can be seen waiting to cross the street."
+            },
+            {
+                "title": "Scene 9: Intersection with Police Presence",
+                "description": "The car arrives at an intersection with E 68 St., where an NYPD car is visible on the right. A man in green clothing crosses the street, while another person is seen running across the crosswalk. Pedestrians and vehicles are present. The buildings tower in the background as the cityscape continues."
+            },
+            {
+                "title": "Scene 10: Multiple Pedestrian Crossings",
+                "description": "The car is at the intersection of E 68 St. and 2nd Ave. Several pedestrians are seen crossing the street, including two men, one wearing a green hoodie and shorts and another in dark clothing. An NYPD car is visible on the right, and a group of people is walking in the background."
+            },
+            {
+                "title": "Scene 11: Red Light at E 68 St.",
+                "description": "The car is stopped at a red light at the intersection of E 68 St. A man in a black jacket is crossing the street. Several pedestrians are seen walking on the sidewalk, and a red SUV is visible driving through the intersection."
+            },
+            {
+                "title": "Scene 12: Intersection Activities",
+                "description": "The car is at the intersection of E 68 St. and 2nd Ave. A white car is seen crossing the street. Pedestrians are walking on the sidewalk, including a man in a brown jacket and a person with a blue bag. The NYPD car is visible on the right."
+            },
+            {
+                "title": "Scene 13: Street Crossing at Red Light",
+                "description": "At the intersection of E 68 St. and 2nd Ave, a group of pedestrians crosses the street while the car is stopped at a red light. An NYPD vehicle is parked on the right side of the intersection, and tall buildings loom in the background."
+            },
+            {
+                "title": "Scene 14: Van Crossing",
+                "description": "The car remains stopped at the intersection of E 68 St. and 2nd Ave as a white van crosses the view. Pedestrians, including two women, are crossing the street. The red traffic light is visible."
+            },
+            {
+                "title": "Scene 15: Evening Crosswalk",
+                "description": "A man walks briskly across the crosswalk at the intersection of E 68 St. and 2nd Ave. Other pedestrians wait on the sidewalk. The NYPD car is still visible on the right, and there is a bus further down the street."
+            },
+            {
+                "title": "Scene 16: Pedestrian Wave",
+                "description": "At the intersection of E 68 St. and 2nd Ave., several pedestrians are crossing the road, including a man waving. An NYPD car is parked on the right, and the buildings frame the scene."
+            },
+            {
+                "title": "Scene 17: More Pedestrian Crossings",
+                "description": "A group of pedestrians is actively crossing the street at the intersection of E 68 St. and 2nd Ave. The NYPD car is visible on the right, and the scene is bustling with city life."
+            },
+            {
+                "title": "Scene 18: Green Light Priority",
+                "description": "At the intersection of E 68 St. and 2nd Ave, pedestrians continue to cross the street while one man is seen running. The traffic light has turned green, and several cars are visible in the background ready to move."
+            },
+            {
+                "title": "Scene 19: Commute Continues",
+                "description": "The car proceeds through the intersection of E 68 St. and 2nd Ave. The traffic light is green, and an NYPD vehicle is visible ahead. Pedestrians continue to walk on the sidewalk."
+            }
+        ]
+    }
+}

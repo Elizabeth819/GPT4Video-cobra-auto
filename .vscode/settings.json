@@ -1,0 +1,13 @@
+{
+    "cSpell.words": [
+        "audiofile",
+        "dotenv",
+        "imwrite",
+        "libx264",
+        "moviepy",
+        "streamlit",
+        "subclip",
+        "videofile"
+    ],
+    "git.ignoreLimitWarning": true
+}

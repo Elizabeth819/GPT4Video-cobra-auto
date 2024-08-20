@@ -1,0 +1,89 @@
+{
+    "Chapter 1: City Drive": {
+        "title": "Chapter 1: City Drive",
+        "start_frame": "0.0s",
+        "end_frame": "20.0s",
+        "scenes": [
+            {
+                "title": "Scene 1: Busy Intersection",
+                "description": "The video shows a busy intersection in the city with cars ready to cross the street."
+            },
+            {
+                "title": "Scene 2: Green Light",
+                "description": "The traffic light turns green and cars start moving forward."
+            },
+            {
+                "title": "Scene 3: Continued Drive",
+                "description": "Cars proceed through the intersection, and pedestrians wait to cross."
+            },
+            {
+                "title": "Scene 4: Pedestrians Walking",
+                "description": "A green light is visible and pedestrians are walking across the street."
+            },
+            {
+                "title": "Scene 5: Crosswalk Traffic",
+                "description": "A man and woman cross the street while a traffic light shows the countdown."
+            },
+            {
+                "title": "Scene 6: Business District",
+                "description": "A man in a suit walks across a crosswalk in a business district with various vehicles parked nearby."
+            },
+            {
+                "title": "Scene 7: School Bus and Truck",
+                "description": "A school bus and a white truck are parked alongside the road with tall buildings in the background."
+            },
+            {
+                "title": "Scene 8: School Zone",
+                "description": "A view from the car shows a school zone area with cars driving through and buildings on either side."
+            },
+            {
+                "title": "Scene 9: Clear Road",
+                "description": "The view shows a clear road ahead with buildings on either side."
+            },
+            {
+                "title": "Scene 10: Businessman and Traffic",
+                "description": "A businessman crosses the street, and there is an NYPD car and traffic in the background. The street sign indicates E 68 St."
+            },
+            {
+                "title": "Scene 11: E 68 St Crosswalk",
+                "description": "People crossing the street at E 68 St with an NYPD car visible to the right. The video shows a bustling city environment with various pedestrians and vehicles."
+            },
+            {
+                "title": "Scene 12: City Crosswalk and Red Light",
+                "description": "The frame shows a city intersection at E 68 St with pedestrians crossing and a red SUV driving through. The NYPD car is still visible on the right side of the frame."
+            },
+            {
+                "title": "Scene 13: Evening on E 68 St",
+                "description": "The intersection at E 68 St seen from a low angle, as a white sedan crosses and pedestrians wait. The light is red and buildings on either side reflect the evening sun."
+            },
+            {
+                "title": "Scene 14: Evening Crosswalk",
+                "description": "Pedestrians cross the street at E 68 St as the traffic light remains red. NYPD cars are visible on the right, and various other cars are waiting or passing through."
+            },
+            {
+                "title": "Scene 15: Traffic and Pedestrians at Dusk",
+                "description": "The video captures a white van crossing the intersection while several pedestrians walk across, with an NYPD car parked on the right."
+            },
+            {
+                "title": "Scene 16: Evening Continuing Traffic",
+                "description": "People continue to cross the street, with city buildings and traffic forming the backdrop. The intersection is lively with pedestrians and cars."
+            },
+            {
+                "title": "Scene 17: Green Light on E 68 St",
+                "description": "Pedestrians and vehicles cross the intersection at E 68 St under a green light, with various buildings in the background and an NYPD car visible to the right."
+            },
+            {
+                "title": "Scene 18: Afternoon Transit",
+                "description": "Pedestrians cross the street at E 68 St as cars and buses move through the intersection under a green light, with buildings and an NYPD car visible in the background."
+            },
+            {
+                "title": "Scene 19: Evening Transition",
+                "description": "Pedestrians and vehicles continue to cross the intersection at E 68 St, with the evening sun still illuminating the buildings and the street."
+            },
+            {
+                "title": "Scene 20: Street View",
+                "description": "A green light at E 68 St with an NYPD car moving forward on the right side and pedestrians walking on the sidewalk."
+            }
+        ]
+    }
+}

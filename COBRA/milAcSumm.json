@@ -1,0 +1,272 @@
+[
+    {
+        "Start_Timestamp": "0.967s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "4.838s",
+        "scene_theme": "Informational",
+        "characters": "",
+        "summary": "The video presents a title card indicating Op NANOOK 17 taking place from 14-25 August 2017, likely referring to a military or related operation, followed by the text B Roll, suggesting footage intended for supplemental or background use in a larger video project.",
+        "actions": "Display of a title card.",
+        "key_objects": "Black screen with white text, no characters or objects."
+    },
+    {
+        "Start_Timestamp": "5.805s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "9.676s",
+        "scene_theme": "Operational",
+        "characters": "",
+        "summary": "A military aircraft with a grey fuselage is seen landing on a runway. The green terrain and foliage surrounding the area combined with the Harold & Company Semi Trailer audio mention suggest an airfield possibly related to the military operation detailed at the beginning of this segment.",
+        "actions": "Landing of a military aircraft.",
+        "key_objects": "Grey military aircraft, runway with markings, surrounding green terrain and trees, clear sky."
+    },
+    {
+        "Start_Timestamp": "10.643966666666667s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "14.5145s",
+        "scene_theme": "Dramatic",
+        "characters": "None",
+        "summary": "In this segment of the video, a large military aircraft with Canada and Royal Canadian Air Force (RCAF) markings is prominently featured preparing for takeoff at an airstrip. The aircraft is shown taxiing along the runway, building up speed for takeoff. The Saguaro Cactus mentioned in the audio is not visible suggesting it may have been a part of the narration from an earlier or different scene.",
+        "actions": "Aircraft taxiing",
+        "key_objects": "Military aircraft with grey fuselage, greenery around the airstrip, and some distant structures. No people visible."
+    },
+    {
+        "Start_Timestamp": "15.482133333333334s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "19.352666666666668s",
+        "scene_theme": "Dramatic",
+        "characters": "None",
+        "summary": "The action continues as the military aircraft accelerates down the runway. Its wings vibrate slightly due to the engine thrust as it prepares for lift-off. The environment around the airstrip remains static, with no significant movement apart from the aircrafts own progression.",
+        "actions": "Aircraft accelerating on runway preparing for lift-off",
+        "key_objects": "Grey military aircraft with Canada and RCAF markings, airstrip, surrounding green fields and distant structures. No characters present in the frame."
+    },
+    {
+        "Start_Timestamp": "20.3203s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "25.158466666666666s",
+        "scene_theme": "Dramatic",
+        "characters": "",
+        "summary": "A large military aircraft is seen taking off from a runway surrounded by a verdant landscape and buildings. The engines emit a visible heat trail as the plane ascends.",
+        "actions": "Aircraft taking off",
+        "key_objects": "Military aircraft, gray in color, with visible aircraft registration numbers. A clear blue sky with slight cloud formations. Buildings in the background with white, gray, and red roofing. Green trees and fields surround the area."
+    },
+    {
+        "Start_Timestamp": "25.158466666666666s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "29.029s",
+        "scene_theme": "Dramatic",
+        "characters": "",
+        "summary": "The military aircraft continues its ascent against the backdrop of a mountainous horizon. The focus remains on the aircraft as it gains altitude with its engines exerting full thrust.",
+        "actions": "Aircraft ascending",
+        "key_objects": "Gray military aircraft with Canadian flag emblem. Clear skies with minimal cloud cover. A distant mountain range can be seen on the horizon. No visible characters are present."
+    },
+    {
+        "Start_Timestamp": "29.996633333333335s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "33.86716666666667s",
+        "scene_theme": "Dramatic",
+        "characters": "",
+        "summary": "The scene features a large aircraft with multiple engines in flight, trailing a significant amount of visible emissions. The plane, possibly a military or cargo aircraft, is captured at various angles showing its grand scale and flight capability.",
+        "actions": "Aircraft flying steadily, emitting trails from engines",
+        "key_objects": "Large gray aircraft with multiple engines and visible white emissions against a clear blue sky. No characters visible."
+    },
+    {
+        "Start_Timestamp": "34.8348s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "38.705333333333336s",
+        "scene_theme": "Preparatory",
+        "characters": "Pilot in uniform, ground crew",
+        "summary": "The focus shifts to a different aircraft, possibly a water bombing plane given its vibrant yellow color and number 805 on the fuselage, parked on the tarmac. A group of people, likely ground crew members, are standing by the aircraft, while a pilot walks away from it toward another small helicopter in the background. The scene suggests preparatory actions for an aviation-related mission.",
+        "actions": "Ground crew waiting by the aircraft, pilot walking towards a helicopter",
+        "key_objects": "Yellow water bomber aircraft with red accents labeled as 805, a group of ground crew members in a mix of uniforms, a pilot in green uniform walking towards a small black and orange helicopter parked at a distance on the tarmac under an overcast sky."
+    },
+    {
+        "Start_Timestamp": "39.67296666666667s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "44.51113333333333s",
+        "scene_theme": "Dramatic",
+        "characters": "Pilot, Copilot, Ground Crew",
+        "summary": "The scene opens to a dramatic view of the airfield with a large, yellow, twin-propeller aircraft labelled Canada and number 805 prominently in the foreground. A small ground crew is present, with two individuals casually walking around the aircraft, maintaining a respectful distance. To the right, a helicopter with its rotors spinning, ready for takeoff or just having landed. The backdrop hints at an overcast sky, indicating either an early morning or an impending operation.",
+        "actions": "Ground crew walking, Helicopter rotors spinning",
+        "key_objects": "Yellow aircraft Canada 805, Helicopter, Ground crew in uniform"
+    },
+    {
+        "Start_Timestamp": "44.51113333333333s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "48.38166666666667s",
+        "scene_theme": "Dramatic",
+        "characters": "Pilot, Copilot, Ground Crew",
+        "summary": "As the airfield scene continues, the ground crew, comprising two figures in military-style uniform, exhibit coordinated activity around the stationary aircraft. Their movements suggest a routine inspection or pre-flight checks which is typical in aviation protocols. Meanwhile, the helicopter crew on the far right of the frame remain near their aircraft, possibly in preparation or debrief. No significant changes happen within this sequence of the video, maintaining the operational ambiance of the airfield.",
+        "actions": "Ground crew conducting pre-flight procedures, Helicopter stationary",
+        "key_objects": "Ground crew in uniform, Twin-propeller aircraft Canada 805, Stationary helicopter with ready rotors"
+    },
+    {
+        "Start_Timestamp": "49.3493s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "55.1551s",
+        "scene_theme": "Routine",
+        "characters": "Ground crew, aircrafts, helicopter",
+        "summary": "The scene is a busy airfield with ground crew members performing various tasks. There is a sense of routine and professionalism as the crew carries out their duties around the brightly colored yellow aircrafts.",
+        "actions": "Ground crew walking around, aircrafts stationary, helicopter landing or taking off",
+        "key_objects": "Yellow aircrafts with Canada and identification numbers visible, a helicopter hovering above the ground, ground crew wearing uniforms and safety vests"
+    },
+    {
+        "Start_Timestamp": "55.1551s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "58.058s",
+        "scene_theme": "Operation",
+        "characters": "Helicopter",
+        "summary": "The focus shifts to helicopter operations as one lifts off the ground, signifying either arrival or departure. The helicopter is solo in the frame, emphasizing the importance of air mobility.",
+        "actions": "Helicopter in motion, ascending or descending",
+        "key_objects": "A military-grade helicopter with a neutral color palette, clear skies, and an empty foreground illustrating the vastness of the airfield"
+    },
+    {
+        "Start_Timestamp": "59.025s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "61.928s",
+        "scene_theme": "Dramatic",
+        "characters": "",
+        "summary": "The helicopter continues to hover above the tarmac, maintaining its position in the air with precision as the blades rotate powerfully.",
+        "actions": "Helicopter hovering, blades rotating",
+        "key_objects": "Gray helicopter hovering above gray tarmac with forest in the background"
+    },
+    {
+        "Start_Timestamp": "61.928s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "67.734s",
+        "scene_theme": "Dramatic",
+        "characters": "Pilot, co-pilot",
+        "summary": "The helicopter is now visible with its side facing the camera. We can see the pilot and co-pilot performing checks and communicating as they control the helicopters stable flight just above the ground.",
+        "actions": "Pilot and co-pilot in helicopter managing controls, helicopter maintaining stable flight",
+        "key_objects": "Green and black helicopter with pilot and co-pilot visible through the side window, hovering above the tarmac with spinning blades against a forest backdrop"
+    },
+    {
+        "Start_Timestamp": "68.70s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "73.54s",
+        "scene_theme": "Preparation",
+        "characters": "Military personnel, civilian instructor",
+        "summary": "The scene opens at an airstrip with a military helicopter stationed and rotors spinning, suggesting imminent action or deployment. Following this, a group of military personnel is seen in a field wearing camouflage uniforms and red caps with a crest, observing or being briefed, as indicated by a civilian instructor in black attire. By the repetitive sequence, the preparations appear thorough and careful, likely for a significant event or operation.",
+        "actions": "Helicopter rotor spinning, military personnel assembling, instructor gesturing",
+        "key_objects": "Military helicopter on airstrip, group of military personnel in camouflage with red caps, civilian instructor in black attire with clipboards"
+    },
+    {
+        "Start_Timestamp": "74.50s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "77.41s",
+        "scene_theme": "Instruction",
+        "characters": "Military personnel, civilian instructor",
+        "summary": "The latter part of the video shows military personnel lined up by a swimming pool, wearing life vests on top of their uniforms and receiving instructions from a civilian wearing black shorts and a black shirt. The setting suggests water rescue or survival training. The military participants are attentive, with some checking their gear as they prepare to engage in the upcoming exercise.",
+        "actions": "Personnel lining up, instructor briefing, gear checking",
+        "key_objects": "Indoor swimming pool, military personnel wearing life vests, civilian instructor with a clipboard"
+    },
+    {
+        "Start_Timestamp": "78.3783s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "81.2812s",
+        "scene_theme": "Preparation",
+        "characters": "Man in black shirt, multiple people in camo",
+        "summary": "The scene starts with a sense of preparation as a man in a black polo shirt, black shorts, and a clipboard appears instructing a group of people dressed in camouflage with red life vests. They are standing beside an indoor pool with DO NOT RUN visible on the wall, which implies a training or instructional setting. The man appears to be giving directions or conducting some sort of briefing.",
+        "actions": "Man talking and gesturing with clipboard, people in camo adjusting equipment and preparing",
+        "key_objects": "Indoor pool, blue pool noodle, red life vests, man wearing black polo shirt, clipboard, camo pants, no visible faces"
+    },
+    {
+        "Start_Timestamp": "82.24883333333334s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "87.087s",
+        "scene_theme": "Training Exercise",
+        "characters": "Multiple people in camo",
+        "summary": "Following the preparatory actions, the individuals in camouflage gear are seen in the water, participating in what appears to be a swimming or rescue training exercise. They are spread out in the pool, moving calmly through the water, suggesting a focus on technique and control rather than speed. The pool is relatively tranquil, which, along with the presence of the life vests, reinforces the idea of a controlled training environment rather than a leisurely swim.",
+        "actions": "Individuals swimming and navigating the pool",
+        "key_objects": "Calm water, swimming individuals in camo and red life vests, no visible faces, pool lane markers"
+    },
+    {
+        "Start_Timestamp": "88.05s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "91.92s",
+        "scene_theme": "Training Exercise",
+        "characters": "Group of people in swim gear",
+        "summary": "Several individuals are in a swimming pool engaged in what appears to be a training exercise. One person is swimming underwater across the pool while the rest watch from the sidelines. A couple of individuals are observing the swimmer, instructing or monitoring the activity. Theres equipment on the poolside, indicating a structured exercise.",
+        "actions": "Swimming underwater, observing from poolside, standing attentively",
+        "key_objects": "Swimming pool with clear blue water, people in black swim gear, poolside equipment like a whiteboard and pool deck equipment"
+    },
+    {
+        "Start_Timestamp": "92.89s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "96.76s",
+        "scene_theme": "Outdoor Activity",
+        "characters": "Group of people in uniforms",
+        "summary": "A group of individuals in camouflage uniforms are working together in an outdoor setting, surrounded by trees. They are setting up a large tent, by holding and securing the corners and sides, cooperating as a team. It looks like a field operation or camping scenario with team members positioned around the tent and gear strewn about the area.",
+        "actions": "Setting up a tent, coordinating with team members, securing tent positions",
+        "key_objects": "Camouflage uniforms, green trees, black and white tent, orange equipment bags, yellow ropes"
+    },
+    {
+        "Start_Timestamp": "97.73s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "102.57s",
+        "scene_theme": "Dramatic",
+        "characters": "Soldiers in camouflage, person in red jacket",
+        "summary": "The video segment begins with soldiers clad in camouflage uniforms setting up a tent amidst a backdrop of tall, green trees. Their actions are hurried, coordinated, and filled with a sense of urgency as they construct their temporary shelter. The sounds from the audio transcript suggest commands and affirmations being exchanged as part of the tent assembly process, indicating a collaborative effort. One character in a bright red jacket provides contrast to the soldiers attire, hinting at a possible role of supervision or safety.",
+        "actions": "Soldiers assembling a tent, coordinating with each other.",
+        "key_objects": "Camouflage uniforms with national flag patches, forest green vegetation, grey tent with orange trim, orange and yellow bags, and rigid tent poles."
+    },
+    {
+        "Start_Timestamp": "102.57s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "106.44s",
+        "scene_theme": "Cooperative",
+        "characters": "Group of soldiers, person in red jacket",
+        "summary": "The focus shifts from the tent assembly to a group of soldiers gathered tightly together. The dense foliage surrounds them as they gather in a circle, likely receiving or giving instructions. The person in the red jacket stands out, interacting within the circle, possibly discussing further strategies or giving feedback. Coherence in movement and the continued dialogue from the audio suggest a discussion or briefing taking place before the next course of action.",
+        "actions": "Soldiers participating in a group discussion.",
+        "key_objects": "Camouflage helmets, soldiers backpacks, red jacket with a white emblem, and lush green bushes."
+    },
+    {
+        "Start_Timestamp": "107.4073s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "108.37493333333333s",
+        "scene_theme": "Preparation",
+        "characters": "Several individuals in camouflage attire",
+        "summary": "A group of people in military-like camouflage outfits gather in a forested area, possibly preparing for an operation or training exercise. The dense greenery of the backdrop hints at an outdoor setting, conducive to such activities.",
+        "actions": "Gathering, interacting in groups",
+        "key_objects": "Camouflage uniforms, Canadian flag patches on some uniforms"
+    },
+    {
+        "Start_Timestamp": "110.31020000000001s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "112.24546666666667s",
+        "scene_theme": "Military Drill",
+        "characters": "Person in camouflage with firearm",
+        "summary": "An individual, dressed in full camouflage military attire, is seen aiming a rifle with focused intent, possibly engaged in a shooting exercise or drill, aligned with a training scenario that the earlier group seemed to be preparing for.",
+        "actions": "Aiming, shooting",
+        "key_objects": "Rifle, camouflage attire, tactical gear"
+    },
+    {
+        "Start_Timestamp": "115.14836666666667s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "116.116s",
+        "scene_theme": "Target Practice",
+        "characters": "Individual in half camo and half red attire",
+        "summary": "An individual is wearing a mix of bright red upper clothing and camouflage lower attire laying prone on the ground, peering through the sights of a hunting rifle, likely engaging in target practice or marksmanship within the context of a controlled training environment.",
+        "actions": "Laying down, aiming with a rifle",
+        "key_objects": "Bright red jacket, hunting rifle, camouflage pants"
+    },
+    {
+        "Start_Timestamp": "117.08s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "124.82s",
+        "scene_theme": "Dramatic",
+        "characters": "Man in red hoodie",
+        "summary": "The video shows a man lying prone on the grass, taking aim with a rifle. He is dressed in a red hoodie, a high-visibility vest with reflective stripes, and camouflage pants. The action remains consistent as he maintains his steady aim, ready to take a shot.",
+        "actions": "Aiming with a rifle",
+        "key_objects": "Rifle - wood and metal, High-visibility orange vest - red hoodie, Camouflage pants - green and brown pattern"
+    },
+    {
+        "Start_Timestamp": "124.82s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "125.79s",
+        "scene_theme": "Conclusion",
+        "characters": "",
+        "summary": "The video concludes with a black screen showing the word Canada in white font alongside a flag icon, indicating either the end of the video or a transition to a segment related to Canada.",
+        "actions": "Displaying closing screen",
+        "key_objects": "Black screen, Text Canada - white, Flag icon - red and white"
+    }
+]

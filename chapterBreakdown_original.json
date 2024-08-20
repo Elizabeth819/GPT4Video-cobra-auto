@@ -1,0 +1,104 @@
+{
+    "Chapter 1: The Match Begins": {
+        "title": "Chapter 1: The Match Begins",
+        "start_frame": "0.0s",
+        "end_frame": "100.0s",
+        "scenes": [
+            {
+                "title": "Scene 1: Opening Plays",
+                "description": "The match starts with both teams displaying strong defense and midfield plays. Spurs and Arsenal players are seen contesting for the ball."
+            },
+            {
+                "title": "Scene 2: Aggressive Possession",
+                "description": "Partey intercepts and passes to Udgard, leading to a crucial block by Romero to prevent a goal-scoring opportunity for Arsenal."
+            },
+            {
+                "title": "Scene 3: Corner Kick Set-up",
+                "description": "The play leads to a corner for Arsenal, taken by Sacker, as the teams prepare for the set-piece."
+            },
+            {
+                "title": "Scene 4: The Opening Goal",
+                "description": "The corner results in a goal for Arsenal, as seen by the scoreboard changing to TOT 0-1 ARS in the final frame."
+            },
+            {
+                "title": "Scene 5: Controversial Own Goal",
+                "description": "The Arsenal team celebrates a goal, which commentators speculate could be an own goal by Hojbjerg."
+            },
+            {
+                "title": "Scene 6: Rebuilding the Play",
+                "description": "Maddison switches the play, and there's a noticeable momentum shift as Spurs regain possession."
+            },
+            {
+                "title": "Scene 7: Spurs Attempt to Strike",
+                "description": "Spurs move forward with Kunasewski being fouled, indicating an increase in intensity by Spurs in their attack."
+            },
+            {
+                "title": "Scene 8: Near Miss",
+                "description": "A failed penalty appeal by Maddison as Spurs push for an equalizer."
+            },
+            {
+                "title": "Scene 9: Arsenal's Counter-attack",
+                "description": "Saka expands Arsenal's advantage with a swift counter-attack, resulting in a second goal for Arsenal."
+            },
+            {
+                "title": "Scene 10: A Dominating Lead",
+                "description": "Arsenal continues their domination as Havertz scores a header from Rice's corner, bringing the score to 3-0 in favor of Arsenal. The team's celebration is evident."
+            },
+            {
+                "title": "Scene 11: Advancing the Play",
+                "description": "Following the goal, the play resumes with Arsenal in possession, maintaining their lead."
+            },
+            {
+                "title": "Scene 12: Tottenham's Resurgence",
+                "description": "After a mistake from the Arsenal goalkeeper passing back to Zavid Raya, Tottenham intercepts and Romero finds the net, changing the score to TOT 1-3 ARS."
+            },
+            {
+                "title": "Scene 13: Continued Offensive",
+                "description": "Tottenham maintains pressure as Sarr sends a drilled pass that almost connects with Romero for an additional goal."
+            },
+            {
+                "title": "Scene 14: Penalty Call",
+                "description": "The play gets more aggressive leading to another Tottenham player being fouled in the area, prompting the referees to check for a possible penalty through VAR."
+            },
+            {
+                "title": "Scene 15: The Penalty Decision",
+                "description": "VAR check confirms a penalty for Tottenham. Declan Rice is seen making contact with a Spurs player's leg."
+            }
+        ]
+    },
+    "Chapter 2: The Comeback": {
+        "title": "Chapter 2: The Comeback",
+        "start_frame": "100.0s",
+        "end_frame": "140.0s",
+        "scenes": [
+            {
+                "title": "Scene 1: Preparing for Penalty",
+                "description": "Son Heung-Min prepares to take the penalty kick against goalkeeper Zavid Raya."
+            },
+            {
+                "title": "Scene 2: The Strike",
+                "description": "Son Heung-Min successfully strikes the penalty, sending the goalkeeper the wrong way."
+            },
+            {
+                "title": "Scene 3: Narrowing the Gap",
+                "description": "The score updates to Tottenham 2, Arsenal 3, as Son celebrates the goal, closing the lead Arsenal holds."
+            },
+            {
+                "title": "Scene 4: Resuming the Game",
+                "description": "Players from both teams line up as the match resumes with Tottenham now only trailing by one goal."
+            },
+            {
+                "title": "Scene 5: The Final Whistle",
+                "description": "The match concludes with the scoreboard showing Tottenham 2-3 Arsenal."
+            },
+            {
+                "title": "Scene 6: Arsenal's Celebration",
+                "description": "Arsenal players are seen celebrating their victory on the field."
+            },
+            {
+                "title": "Scene 7: Credits",
+                "description": "The video transitions to the credits indicative of conclusion."
+            }
+        ]
+    }
+}

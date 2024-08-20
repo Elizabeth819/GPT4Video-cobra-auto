@@ -1,0 +1,6 @@
+Below are an example of image time series:
+{% for image_name in example_images.items() %}
+    sample_image: {{ image_name }}
+    next line is the base64 encoded image:
+        {{ example_images[image_name] }}
+{% endfor %}

@@ -1,0 +1,42 @@
+[
+    {
+        "Start_Timestamp": "0.6s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "6s",
+        "scene_theme": "Urban, Routine",
+        "characters": "Several pedestrians, a man with blue folder",
+        "summary": "A scene depicting a busy urban intersection during the day. Various vehicles and pedestrians are moving and waiting at the crosswalk. The traffic signal alternates, allowing pedestrians and vehicles to proceed at different times. Several pedestrians can be seen waiting and crossing the street.",
+        "actions": "Traffic light transitions, vehicles stop and proceed, pedestrians cross the street.",
+        "key_objects": "Black car in front, white delivery truck on the left, yellow school bus in the last frame, various buildings flanking the street, man with a blue folder on the sidewalk"
+    },
+    {
+        "Start_Timestamp": "6.6s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "12s",
+        "scene_theme": "Urban, Busy",
+        "characters": "Pedestrians, Vehicles",
+        "summary": "The frames from 6.6s to 12s depict different views of an urban street. Traffic is shown progressing at a controlled pace as pedestrians cross at a properly marked intersection. Yellow school bus remains stationary by the curb.",
+        "actions": "Vehicles moving forward, Pedestrians crossing the street, Police car turning right",
+        "key_objects": "Yellow school bus, white box truck, multiple pedestrians, NYPD police car, traffic lights, several buildings and shops in the vicinity"
+    },
+    {
+        "Start_Timestamp": "12s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "16s",
+        "scene_theme": "Urban, Commute",
+        "characters": "Pedestrians, Vehicles",
+        "summary": "From 12s onward, vehicles continue to move forward, while pedestrians traverse the crosswalk. The police car is prominently visible. Traffic appears orderly as vehicles follow lane markings and traffic signals.",
+        "actions": "Vehicles continuing movement, Pedestrians crossing, Police car stopping at intersection",
+        "key_objects": "Red SUV, pedestrians crossing, NYPD police car, street intersection, traffic lights, buildings and storefronts along the street"
+    },
+    {
+        "Start_Timestamp": "12.6s",
+        "sentiment": "Neutral",
+        "End_Timestamp": "18s",
+        "scene_theme": "Urban, Busy",
+        "characters": "Pedestrians, Vehicles",
+        "summary": "The sequence captures a busy urban intersection with various pedestrians and vehicles crossing the street. The traffic signal switches from red to green, allowing multiple people and cars to pass through the crosswalk.",
+        "actions": "Pedestrians crossing the street, vehicles waiting and then moving as the traffic light changes from red to green.",
+        "key_objects": "Traffic light, street signs (E 68 St), NYPD car, red SUV, white van, buses, other cars, pedestrians carrying bags or backpacks, buildings flanking the streets."
+    }
+]
