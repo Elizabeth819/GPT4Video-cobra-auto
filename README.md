@@ -1,16 +1,17 @@
 Hi everyone, general information and format for each of the .env file is below. (backend and frontend)
 
 ## Important Notes
+  - Use GPT-4o instead of GPT-4-turbo vision for latest video interpretation capability.
   - The Azure GPT4 Vision service has 2 issues, 1: you can only send 10 (now 20, but unstable) images per call, so max FPI is 10, and you need to apply to turn of content filtering, as it is synchronous and adds 30+ seconds to each call.
 
 ## Frameworks and Languages:
-  - Python 3.10 and greater for the backend
+  - Python 3.12 for the backend
   - NodeJS 18 and greater for the frontend, uses NextJS
 
 ## Installation Instructions:
   - Pull down the Github
   - set the ENV variables
-  - Pip install the requirements.txt in the backend
+  - Pip install the requirements.txt in the backend (Install CMake beforehand: on Mac, brew install cmake; Linux ubuntu: sudo apt-get install cmake)
   - npm install the frontend packages in the COBRA folder
 
 ## Run Instructions Backend:
@@ -20,7 +21,7 @@ Hi everyone, general information and format for each of the .env file is below. 
 ## Run Instructions Frontend:
   - navigate to the COBRA folder and "npm run dev" to start the dev server
   - if there is a nextjs error, delete the .next folder from the file directory.
-  - to run in production npm run build, and then npm start
+  - to run in production npm run build, and then npm start: npm run dev
 
 ## Containers:
   - There are Docker Containers ready to go for both frontend and backend, as well as a compose that allows for facial recognition.
@@ -56,6 +57,8 @@ Hi everyone, general information and format for each of the .env file is below. 
   - integration with response_format when not preview.
 
 ## Priority Use cases:
+  - Sequential action detection, explanation and prediction
+  - Key actions and extensive objects identification
   - Audio dubbing for the visually disabled with accurate text insertion and neural voice
   - Dynamic ad insertion via semantic insertion
   - Multi video episodic analysis
