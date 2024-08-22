@@ -21,9 +21,12 @@ Hi everyone, general information and format for each of the .env file is below. 
   - For ChapterAnalysis, in the code, change the video path and fi/fpi directly at the end of the script.
 
 ## Run Instructions Frontend:
+  - Linux shell: sudo apt install npm; npm install
   - navigate to the COBRA folder and "npm run dev" to start the dev server
   - if there is a nextjs error, delete the .next folder from the file directory.
   - to run in production npm run build, and then npm start: npm run dev
+  - If using an Azure VM, add an inbound policy in settings, network, destination port 3000|TCP|Allow|priority=100
+  - Open in local web browser: localhost:3000, or connect to a remote VM: your-vm-public-ip:3000
 
 ## Containers:
   - There are Docker Containers ready to go for both frontend and backend, as well as a compose that allows for facial recognition.
