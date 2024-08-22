@@ -33,7 +33,7 @@ azure_whisper_deployment=os.environ["AZURE_WHISPER_DEPLOYMENT"]
 azure_whisper_endpoint=os.environ["AZURE_WHISPER_ENDPOINT"]
 
 #azure openai vision api key *
-azure_vision_key=os.environ["AZURE_VISION_KEY"]
+#azure_vision_key=os.environ["AZURE_VISION_KEY"]
 
 #Audio API type (OpenAI, Azure)*
 audio_api_type=os.environ["AUDIO_API_TYPE"]
@@ -403,7 +403,7 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):  #fpi is frames per interval, fi is 
                 "seed": 42,
                 "temperature": 0
             }
-            response=send_post_request(vision_endpoint,vision_deployment,azure_vision_key,payload2)
+            response=send_post_request(vision_endpoint,vision_deployment,openai_api_key,payload2)
 
         else:
             headers = {
@@ -748,7 +748,7 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):  #fpi is frames per interval, fi is 
 #AnalyzeVideo("./medal.mp4",60,10)
 # AnalyzeVideo("Nuke.mp4",60,10,False)
 # AnalyzeVideo("复杂场景.mov",1,10) # 10 frames per interval, 1 second interval. fpi=10 is good for accurate analysis
-AnalyzeVideo("test_video/三轮车.mp4",4,10)
+AnalyzeVideo("test_video/car-driving.mov",4,10)
 
 # if __name__ == "__main__": 
      
