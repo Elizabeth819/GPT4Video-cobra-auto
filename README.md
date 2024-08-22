@@ -11,11 +11,13 @@ Hi everyone, general information and format for each of the .env file is below. 
 ## Installation Instructions:
   - Pull down the Github
   - set the ENV variables
-  - Pip install the requirements.txt in the backend (Install CMake beforehand: on Mac, brew install cmake; Linux ubuntu: sudo apt-get install cmake)
+  - (Install CMake beforehand: on Mac, brew install cmake; Linux ubuntu: sudo apt-get install cmake， and then install libgl1 for OpenGL: sudo apt install libgl1)
+  - Pip install the requirements.txt in the backend 
   - npm install the frontend packages in the COBRA folder
 
 ## Run Instructions Backend:
-  - For ActionSummary, run the ActionSummary.py file from terminal with command like "python ActionSummary.py "path_to_video","frame interval integer","frames per interval integer","False". For example python ActionSummary.py "./myVideo.mp4",10,10,False.
+  - For autonomous driving video analysis, run the ActionSummary-predict_explain-fsl-sys-Cn-cutin.py, video file name can be changed in the last line before main entry at the bottom.
+  - For general video analysis, run the ActionSummary.py file from terminal with command like "python ActionSummary.py "path_to_video","frame interval integer","frames per interval integer","False". For example python ActionSummary.py "./myVideo.mp4",10,10,False.
   - For ChapterAnalysis, in the code, change the video path and fi/fpi directly at the end of the script.
 
 ## Run Instructions Frontend:
