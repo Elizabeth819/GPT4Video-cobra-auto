@@ -16,6 +16,7 @@ Hi everyone, general information and format for each of the .env file is below. 
   - npm install the frontend packages in the COBRA folder
 
 ## Run Instructions Backend:
+  - Check if frames and audio folder exist, if existing, delete them, they are intermediate processing frames and extracted audios during running below ActionSummary-predict_explain-fsl-sys-Cn-cutin.py or ActionSummary.py.
   - For autonomous driving video analysis, run the ActionSummary-predict_explain-fsl-sys-Cn-cutin.py, video file name can be changed in the last line before main entry at the bottom.
   - For general video analysis, run the ActionSummary.py file from terminal with command like "python ActionSummary.py "path_to_video","frame interval integer","frames per interval integer","False". For example python ActionSummary.py "./myVideo.mp4",10,10,False.
   - For ChapterAnalysis, in the code, change the video path and fi/fpi directly at the end of the script.
