@@ -11,7 +11,7 @@ Hi everyone, general information and format for each of the .env file is below. 
 ## Installation Instructions:
   - Pull down the Github
   - set the ENV variables
-  - (Install CMake beforehand: on Mac, brew install cmake; Linux ubuntu: sudo apt-get install cmake， and then install libgl1 for OpenGL: sudo apt install libgl1)
+  - (Install CMake beforehand: on Mac, brew install ffmpeg, brew install cmake; Linux ubuntu: sudo apt-get install cmake， and then install libgl1 for OpenGL: sudo apt install libgl1)
   - Pip install the requirements.txt in the backend 
   - npm install the frontend packages in the COBRA folder
 
