@@ -61,10 +61,10 @@ with open(new_file_path, 'w', encoding='utf-8') as file:
 # Start Ingesting...
 # Define your service and index names
 service_name = "cobra-video-search-eliz"
-admin_key = "ShMdZDrj1lbfDvh2ZMZztl2HDj9NWNffOq5K0j06nIAzSeDKRWcu"
+admin_key = ""
 
 # index_name = "p36-1_index"  # cut in
-index_name = "tricycle_index"  # cow, put english and chinese into one index together
+index_name = "tricycle_index"  # cow, put english and chinese into one index together, same as line 78
 
 # Create a SearchIndexClient to manage the index
 index_client = SearchIndexClient(
