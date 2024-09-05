@@ -262,7 +262,7 @@ index_schema = {
         "azureOpenAIParameters": {
           "resourceUri": "https://aoai-eastus2-eliza.openai.azure.com/",
           "deploymentId": "text-embedding-3-large",
-          "apiKey": "44f7eecb1e684397b55156ba572ea23d",
+          "apiKey": "",
           "modelName": "text-embedding-3-large",
           "authIdentity": None
         },
