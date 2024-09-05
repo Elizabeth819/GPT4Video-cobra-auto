@@ -29,6 +29,13 @@ Hi everyone, general information and format for each of the .env file is below. 
   - If using an Azure VM, add an inbound policy in settings, network, destination port 3000|TCP|Allow|priority=100
   - Open in local web browser: localhost:3000, or connect to a remote VM: your-vm-public-ip:3000
 
+## Run Vector Search in Frontend searchbox:
+  - Run ingest_scenes.py to create index and ingest actionSummary.json to AI Search
+    change json file name, index name, ai search endpoint/api key in ingest_scenes.py
+  - Modify app/api/cog/route.js: in last few lines, change semantic configuration name to the same as the semantic config used in the index creation json.
+  - Modify index name in Cobra env file.
+  - Search in the searchbox in a semantic way, get semantically similar results without having to exact match with keyword.
+
 ## Containers:
   - There are Docker Containers ready to go for both frontend and backend, as well as a compose that allows for facial recognition.
 
