@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 # Generate embeddings
 from openai import AzureOpenAI
 
-api_endpoint = "https://gpt4o-eastus-eliz.openai.azure.com/"
+api_endpoint = "https://aoai-eastus2-eliza.openai.azure.com/"
 api_key = ""
 
 client = AzureOpenAI(api_key=api_key,
@@ -27,44 +27,28 @@ def generate_embedding(text):
 
 # 读取guitantou.json文件
 # json_file_path = 'actionSummary-P36-1-en.json'
-# json_file_path = 'actionSummary-三轮车2-api0601.json'
 json_file_path = 'actionSummary.json'
+
 with open(json_file_path, 'r', encoding='utf-8') as file:
     documents = json.load(file)
 
 # 生成向量并添加到文档
 for doc in documents:
-    summary_vector = generate_embedding(doc['summary'])
-    actions_vector = generate_embedding(doc['actions'])
-    character_vector = generate_embedding(doc['characters'])
-    keyobjects_vector = generate_embedding(doc['key_objects'])
-    keyactions_vector = generate_embedding(doc['key_actions'])
-    nextaction_vector = generate_embedding(doc['next_action'])
-
     # Add vectors to the document
-    doc['summaryVector'] = summary_vector
-    doc['actionsVector'] = actions_vector
-    doc['characterVector'] = character_vector
-    doc['keyobjectsVector'] = keyobjects_vector
-    doc['keyactionsVector'] = keyactions_vector
-    doc['nextactionVector'] = nextaction_vector
-
-# Save updated documents to a new JSON file with a "_with_vectors" suffix
-base_name, ext = os.path.splitext(json_file_path)
-new_file_path = base_name + "_with_vectors" + ext
-print(f"Saving updated documents with vectors to: {new_file_path}")
-
-# 保存更新后的文档
-with open(new_file_path, 'w', encoding='utf-8') as file:
-    json.dump(documents, file, ensure_ascii=False, indent=4)
+    doc['summaryVector'] = generate_embedding(doc['summary'])
+    doc['actionsVector'] = generate_embedding(doc['actions'])
+    doc['characterVector'] = generate_embedding(doc['characters'])
+    doc['keyobjectsVector'] = generate_embedding(doc['key_objects'])
+    doc['keyactionsVector'] = generate_embedding(doc['key_actions'])
+    doc['nextactionVector'] = generate_embedding(doc['next_action'])
 
 # Start Ingesting...
 # Define your service and index names
 service_name = "cobra-video-search-eliz"
 admin_key = ""
 
-# index_name = "p36-1_index"  # cut in
-index_name = "tricycle_index"  # cow, put english and chinese into one index together, same as line 78
+# Define the name of the index
+index_name = "complexscene2_index" 
 
 # Create a SearchIndexClient to manage the index
 index_client = SearchIndexClient(
@@ -73,9 +57,8 @@ index_client = SearchIndexClient(
 )
 
 # Define the schema of the index
-"""
 index_schema = {
-    "name": "urban_scene_index",
+    "name": "complexscene2_index",
     "fields": [
         {
             "name": "id",
@@ -124,12 +107,30 @@ index_schema = {
             "facetable": False,
         },
         {
+            "name": "characterVector",
+            "type": "Collection(Edm.Single)",
+            "searchable": True,
+            "filterable": False,
+            "facetable": False,
+            "vectorSearchDimensions": 3072,
+            "vectorSearchProfile": "vector-profile",            
+        },        
+        {
             "name": "summary",
             "type": "Edm.String",
             "searchable": True,
             "filterable": False,
             "facetable": False,
         },
+        {
+            "name": "summaryVector",
+            "type": "Collection(Edm.Single)",
+            "searchable": True,
+            "filterable": False,
+            "facetable": False,
+            "vectorSearchDimensions": 3072,
+            "vectorSearchProfile": "vector-profile",            
+        },        
         {
             "name": "actions",
             "type": "Edm.String",
@@ -138,12 +139,62 @@ index_schema = {
             "facetable": False,
         },
         {
+            "name": "actionsVector",
+            "type": "Collection(Edm.Single)",
+            "searchable": True,
+            "filterable": False,
+            "facetable": False,
+            "vectorSearchDimensions": 3072,
+            "vectorSearchProfile": "vector-profile",            
+        },           
+        {
             "name": "key_objects",
             "type": "Edm.String",
             "searchable": True,
             "filterable": False,
             "facetable": False,
         },
+        {
+            "name": "keyobjectsVector",
+            "type": "Collection(Edm.Single)",
+            "searchable": True,
+            "filterable": False,
+            "facetable": False,
+            "vectorSearchDimensions": 3072,
+            "vectorSearchProfile": "vector-profile",            
+        },                     
+        {
+            "name": "key_actions",
+            "type": "Edm.String",
+            "searchable": True,
+            "filterable": False,
+            "facetable": False,
+        },
+        {
+            "name": "keyactionsVector",
+            "type": "Collection(Edm.Single)",
+            "searchable": True,
+            "filterable": False,
+            "facetable": False,
+            "vectorSearchDimensions": 3072,
+            "vectorSearchProfile": "vector-profile",            
+        },        
+        {
+            "name": "next_action",
+            "type": "Edm.String",
+            "searchable": True,
+            "filterable": False,
+            "facetable": False,
+        },
+        {
+            "name": "nextactionVector",
+            "type": "Collection(Edm.Single)",
+            "searchable": True,
+            "filterable": False,
+            "facetable": False,
+            "vectorSearchDimensions": 3072,
+            "vectorSearchProfile": "vector-profile",            
+        },                
     ],
     "suggesters": [
         {
@@ -168,18 +219,59 @@ index_schema = {
     "semantic": {
         "configurations": [
             {
-                "name": "urban_scene_semantic_config",
+                "name": "complex_scene_semantic_config",
                 "prioritizedFields": {
                     "titleField": {"fieldName": "summary"},
                     "prioritizedContentFields": [
                         {"fieldName": "summary"},
                         {"fieldName": "actions"},
                         {"fieldName": "characters"},
+                        {"fieldName": "key_objects"},
+                        {"fieldName": "key_actions"},
+                        {"fieldName": "next_action"},
                     ],
                 },
             }
         ]
     },
+  "vectorSearch": {
+    "algorithms": [
+      {
+        "name": "vector-config-hnsw",
+        "kind": "hnsw",
+        "hnswParameters": {
+          "metric": "cosine",
+          "m": 4,
+          "efConstruction": 400,
+          "efSearch": 500
+        },
+        "exhaustiveKnnParameters": None
+      }
+    ],
+    "profiles": [
+      {
+        "name": "vector-profile",
+        "algorithm": "vector-config-hnsw",
+        "vectorizer": "text-embedding-3-large",
+      }
+    ],
+    "vectorizers": [
+      {
+        "name": "text-embedding-3-large",
+        "kind": "azureOpenAI",
+        "azureOpenAIParameters": {
+          "resourceUri": "https://aoai-eastus2-eliza.openai.azure.com/",
+          "deploymentId": "text-embedding-3-large",
+          "apiKey": "44f7eecb1e684397b55156ba572ea23d",
+          "modelName": "text-embedding-3-large",
+          "authIdentity": None
+        },
+        "customWebApiParameters": None,
+        "aiServicesVisionParameters": None,
+        "amlParameters": None
+      }
+    ],
+  }
 }
 
 # Create or update the index
@@ -189,7 +281,7 @@ try:
     print("Index created or updated successfully.")
 except Exception as e:
     print(f"Failed to create or update index: {e}")
-"""
+
 
 # Create a SearchClient to upload documents
 search_client = SearchClient(
@@ -198,49 +290,41 @@ search_client = SearchClient(
     credential=AzureKeyCredential(admin_key),
 )
 
-# Load JSON data from the file
-with open(new_file_path, "r") as json_file:
-    data = json.load(json_file)
-
-
 # Add IDs to documents
-for i, doc in enumerate(data):
+for i, doc in enumerate(documents):
     doc["id"] = str(i)
-    # Eliza added this code to convert key_objects to a string
-    if isinstance(doc.get("key_objects"), list):
-        doc["key_objects"] = ", ".join(doc["key_objects"])
-
-# Validate documents against the expected schema
-expected_fields = {
-    "id": str,
-    "Start_Timestamp": str,
-    "End_Timestamp": str,
-    "sentiment": str,
-    "scene_theme": str,
-    "characters": str,
-    "summary": str,
-    "actions": str,
-    "key_objects": str,
-    "summaryVector": list,
-    "actionVector": list,
-    "characterVector": list
-}
-
-# def validate_document(doc):
-#     for field, field_type in expected_fields.items():
-#         if field not in doc:
-#             logging.error(f"validate document: Missing field '{field}' in document: {doc}")
-#             return False
-#         if not isinstance(doc[field], field_type):
-#             logging.error(f"validate document: Field '{field}' has incorrect type in document: {doc}. Expected type: {field_type.__name__}, Actual type: {type(doc[field]).__name__}")
-#             return False
-#     return True
-
-# valid_data = [doc for doc in data if validate_document(doc)]
+  
+# 构建索引操作
+upload_documents = [
+    {
+        "@search.action": "upload",  # 或者 "mergeOrUpload" 或 "delete"
+        "id": doc["id"],
+        "Start_Timestamp": doc.get("Start_Timestamp", ""),
+        "End_Timestamp": doc.get("End_Timestamp", ""),
+        "sentiment": doc.get("sentiment", ""),
+        "scene_theme": doc.get("scene_theme", ""),
+        "characters": doc.get("characters", ""),
+        "summary": doc.get("summary", ""),
+        "actions": doc.get("actions", ""),
+        "key_objects": doc.get("key_objects", ""),
+        "key_actions": doc.get("key_actions", ""),
+        "next_action": doc.get("next_action", ""),
+        "summaryVector": doc.get("summaryVector", []),
+        "actionsVector": doc.get("actionsVector", []),
+        "characterVector": doc.get("characterVector", []),
+        "keyobjectsVector": doc.get("keyobjectsVector", []),
+        "keyactionsVector": doc.get("keyactionsVector", []),
+        "nextactionVector": doc.get("nextactionVector", []),
+    }
+    for doc in documents
+]
 
 # Upload documents to the index
 try:
-    result = search_client.upload_documents(documents=data)
-    print(f"Documents uploaded successfully: {result}")
+    result = search_client.upload_documents(documents=upload_documents)
+    if result[0].succeeded:
+        print(f"Documents uploaded successfully: {result}")
+    else:
+        logging.error(f"Failed to upload documents: {result[0].error_message}")    
 except Exception as e:
     print(f"Failed to upload documents: {e}")
