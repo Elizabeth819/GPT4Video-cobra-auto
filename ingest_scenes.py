@@ -45,7 +45,7 @@ for doc in documents:
 # Start Ingesting...
 # Define your service and index names
 service_name = "cobra-video-search-eliz"
-admin_key = "ShMdZDrj1lbfDvh2ZMZztl2HDj9NWNffOq5K0j06nIAzSeDKRWcu"
+admin_key = ""
 
 # Define the name of the index
 index_name = "complexscene2_index" 

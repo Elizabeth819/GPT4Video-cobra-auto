@@ -836,14 +836,7 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):  #fpi is frames per interval, fi is 
 #AnalyzeVideo("./medal.mp4",60,10)
 # AnalyzeVideo("Nuke.mp4",60,10,False)
 # AnalyzeVideo("复杂场景.mov",1,10) # 10 frames per interval, 1 second interval. fpi=10 is good for accurate analysis
-# AnalyzeVideo("test_video/三轮车.mp4",4,10)
-# AnalyzeVideo("test_video/鬼探头2.mov",2,10)
-# AnalyzeVideo("test_video/0_cutin_aeb.mp4",2,10)
-# AnalyzeVideo("时序事件类/抬杆/负样本3.mp4",15,8)
-# AnalyzeVideo("trim落下.mp4",9,10)
-# AnalyzeVideo("时序事件类/横穿马路/负样本5.mp4",2,10)
-AnalyzeVideo("时序事件类/自车调头/正样本1.mp4",18,15)
-# AnalyzeVideo("时序事件类/自车超车/正样本1.mp4",8,10)
+AnalyzeVideo("test_video/car-driving.mov",4,10)
 
 # if __name__ == "__main__": 
      
