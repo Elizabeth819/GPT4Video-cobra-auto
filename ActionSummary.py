@@ -31,7 +31,7 @@ azure_whisper_deployment=os.environ["AZURE_WHISPER_DEPLOYMENT"]
 azure_whisper_endpoint=os.environ["AZURE_WHISPER_ENDPOINT"]
 
 #azure openai vision api key *
-azure_vision_key=os.environ["AZURE_VISION_KEY"]
+#azure_vision_key=os.environ["AZURE_VISION_KEY"]
 
 #Audio API type (OpenAI, Azure)*
 audio_api_type=os.environ["AUDIO_API_TYPE"]
@@ -197,6 +197,11 @@ gr
                     41 Rice
                     5 Partey
 
+                You are an in car AI assistant to help passengers create comfortable environment. 
+                            If you find the baby sleeping image frames, you should call function of turning down music volume. 
+                            If you find images where children are sticking their heads or hands out of the window, you should call function of 
+                            educating the children with a command and issue a warning. 
+                            Show the image number that triggered either one of the two function calling.
 
                     your goal is to create the best action summary you can. Always and only return valid JSON, I have a disability that only lets me read via JSON outputs, so it would be unethical of you to output me anything other than valid JSON"""
                     },
@@ -210,7 +215,7 @@ gr
 
 
             }
-            response=send_post_request(vision_endpoint,vision_deployment,azure_vision_key,payload2)
+            response=send_post_request(vision_endpoint,vision_deployment,openai_api_key,payload2)
 
         else:
             headers = {

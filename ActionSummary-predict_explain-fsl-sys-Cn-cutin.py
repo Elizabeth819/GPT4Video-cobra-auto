@@ -33,7 +33,7 @@ azure_whisper_deployment=os.environ["AZURE_WHISPER_DEPLOYMENT"]
 azure_whisper_endpoint=os.environ["AZURE_WHISPER_ENDPOINT"]
 
 #azure openai vision api key *
-azure_vision_key=os.environ["AZURE_VISION_KEY"]
+# azure_vision_key=os.environ["AZURE_VISION_KEY"]
 
 #Audio API type (OpenAI, Azure)*
 audio_api_type=os.environ["AUDIO_API_TYPE"]
@@ -150,7 +150,7 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):  #fpi is frames per interval, fi is 
                         "type": "image_url",
                         "image_url": {
                         "url": f"data:image/jpeg;base64,{base64_image}",
-                        "detail":"high"
+                        "detail":"low"
                         }
                     })
             
@@ -168,21 +168,33 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):  #fpi is frames per interval, fi is 
         #add few-shot learning metadata
         def image_to_base64(image_path):
             image = cv2.imread(image_path)
-            image = vu.resize_down_to_512_max_dim(image) # resize to small image
+            image = vu.resize_down_to_256_max_dim(image) # resize to small image
             new_path = os.path.basename(image_path).split('.')[0] + '_resized.jpg'
-            cv2.imwrite(new_path, image, [int(cv2.IMWRITE_JPEG_QUALITY),80]) #70
+            cv2.imwrite(new_path, image, [int(cv2.IMWRITE_JPEG_QUALITY),30]) #70
             image = cv2.imread(new_path)
             _, buffer = cv2.imencode('.jpg', image)
 
             base64_str = base64.b64encode(buffer).decode('utf-8')
             return base64_str
         
-        example_images = {
+        example_images_relativeposition = {
             "redtruck-32s.png": image_to_base64("./fsl/redtruck-32s.png"),
             "redtruck-33s.png": image_to_base64("./fsl/redtruck-33s.png"),
         }
+        example_images_lowerbar = {
+            "lowerbar_1.png": image_to_base64("./fsl/lowerbar_1.jpg"),
+            "lowerbar_3.png": image_to_base64("./fsl/lowerbar_3.jpg"),
+            "lowerbar_5.png": image_to_base64("./fsl/lowerbar_5.jpg"),
+            "lowerbar_7.png": image_to_base64("./fsl/lowerbar_7.jpg"),
+        }
+        example_images_raisebar = {
+            "lowerbar_7.png": image_to_base64("./fsl/lowerbar_7.jpg"),
+            "lowerbar_8s.png": image_to_base64("./fsl/lowerbar_8s.jpg"),
+            "lowerbar_9s.png": image_to_base64("./fsl/lowerbar_9s.jpg"),
+            "lowerbar_10s.png": image_to_base64("./fsl/lowerbar_10s.jpg"),
+        }
         # 加载image label JSON文件
-        assistant_response = """
+        assistant_response_relativeposition = """
             {
                 "Start_Timestamp": "s",
                 "sentiment": "Negative",
@@ -195,14 +207,42 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):  #fpi is frames per interval, fi is 
                 "key_actions": "撞桥墩",
                 "next_action": "由于左侧有一辆红色卡车失控并撞上了高架桥的桥墩，建议司机减速并向右移动，以确保安全。下一步行动:速度控制: 减速, 方向控制: 转动方向盘绕行, 车道控制: 向右移动"
             }
+           """ 
+        assistant_response_lowerbar = """
+            {
+            "Start_Timestamp": "s",
+            "sentiment": "Negative",
+            "End_Timestamp": "s",
+            "scene_theme": "Dramatic",
+            "characters": "闸杆",
+            "summary": "停车场的闸杆一开始在上面大部分打开状态,从上向下缓慢落下直到关闭,但没有完全关闭。",
+            "actions": "停车场的闸杆处于\"落下过程中\"状态\", 到达\"接近关闭\"状态",
+            "key_objects": "闸杆",
+            "key_actions": "落杆",
+            "next_action": "由于闸杆处于从高处落下至快要关闭，建议司机不要通过闸杆。下一步行动:速度控制: 等待, 方向控制: 保持方向, 车道控制: 保持在当前车道"      
+        }
         """
-
+        assistant_response_raisebar = """
+            {
+            "Start_Timestamp": "s",
+            "sentiment": "Negative",
+            "End_Timestamp": "s",
+            "scene_theme": "Dramatic",
+            "characters": "闸杆",
+            "summary": "停车场的闸杆从下到上逐渐抬起,一开始是关闭,后面逐渐打开,但没有完全打开。",
+            "actions": "停车场的闸杆正从低处逐渐抬起打开，处于\"抬起过程中\"状态， 尚未达到完全开启。",
+            "key_objects": "闸杆",
+            "key_actions": "抬杆",
+            "next_action": "由于闸杆处于从低处逐渐抬起，建议司机不要通过闸杆。下一步行动:速度控制: 等待, 方向控制: 保持方向, 车道控制: 保持在当前车道"      
+        }
+        """
         # setting template format with jinja2
         env = Environment(loader=FileSystemLoader('./fsl'))
         template = env.get_template('fewshot_userpmt.jinja2')
         # render the template
-        fsl_payload = template.render(example_images=example_images)
-
+        fsl_payload = template.render(example_images=example_images_relativeposition)
+        lowerbar_fsl_payload = template.render(example_images=example_images_lowerbar)
+        raisebar_fsl_payload = template.render(example_images=example_images_raisebar)
 
         #extraction template
         json_form=str([json.dumps({"Start_Timestamp":"4s (the second number in the path name of the frame file, eg, 0.2s)",\
@@ -210,7 +250,7 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):  #fpi is frames per interval, fi is 
                                 "End_Timestamp":"5s (the second number in the path name of the frame file, eg, 1s)",\
                                 "scene_theme":"Dramatic",\
                                 "characters":"Man in hat, woman in jacket",\
-                                "summary":"Summary of events occurring around these timestamps including actions. Use both transcript and frames to create a full picture, be detailed and attentive, be serious and straightforward. Ensure to distinguish whether the action is performed by the car itself or other cars. \
+                                "summary":"Summary of events occurring around these timestamps including actions. Use both transcript and frames to create a full picture, be detailed and attentive, be serious and straightforward. Ensure to distinguish whether the action is performed by the car itself or other cars. Self vehicle overtaking the car ahead is an important action of self car, don't omit due to observing the other cars or surroundings, make sure keep an eye on the self car's overtaking other cars.自车超车一旦发生,就要在summary里上报\
                                            Please carefully analyze the key objects and their positions in the image, considering their relative relationships and interactions with the surrounding environment.",\
                                 "actions":"Extract key actions via both video frames analysis and summary above, also use transcript. If a dangerous accident is already mentioned in the summary above, you must include the IMPORTANT event in the actions as well. Ensure to distinguish whether the action is performed by the car itself or other cars, don't confuse the subjects of events occuring in the video and audio. The events described in the audio, such as collision, could involve our vehicle or another vehicle.It must be determined in conjunction with the video. If there is any potential for misunderstanding, provide an explanation to clarify who is performing the action. Additionally, you should not only describe the actions themselves, but also provide detailed reasoning for why the vehicle is taking the current actions, such as why the driver is driving in low speed or changes in speed and direction. Report self vehicle's speed.Focus soly on the reasoning for the vehicle's action, excluding any pedestrian's behavior.",\
                                 "key_objects": "Key objects are those that could **immediately affect the vehicle’s path or safety**, such as **moving vehicles**, **pedestrians stepping into the road**, or **roadblocks** that necessitate a sudden maneuver. **Focus solely on objects that pose a direct threat** to the safety of the car. **Exclude any objects** that do not present a clear and present danger, such as trees or mounds beside the road, as these do not pose a direct threat. For example, **do not include static natural objects** like trees, grass, or roads unless they are **directly involved in a potential collision scenario** (e.g., a tree falling towards the road). **Do not include objects that are static and pose no immediate threat**, such as trees or bushes beside the road or roads. \
@@ -219,12 +259,12 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):  #fpi is frames per interval, fi is 
                                     3) **Describe their next behavior** direction, such as whether they are likely to accelerate or slow down. \
                                     4) **DO NOT describe any unimportant objects** that are irrelevant to the car itself. \
                                     The **key objects** include not only people but also dangerous barriers such as **roadblocks** and **water puddles**. **Focus on detailing all relevant and dangerous objects**, with as much detail as possible extracted from the frame (**gender**, **clothing**, **colors**, **age**). **Be incredibly detailed**. **Include colors along with descriptions**.",\
-                                "key_actions": "List dangerous actions if detected from both 'summary' and 'actions'. 如果上面的'summary'里发现了关键行为，如突然停车、突然减速，就要列在key actions里面，不要不报。IF any key behavior is mentioned in the summary or actions, such as sudden braking, sudden deceleration, or vehicle stopping of both front/near-by cars and self car, you must report it in the key actions. Do not omit such actions under any circumstances. Include the following actions but not limited to: Ghosting probing(鬼探头); cut in(加塞,pay special attention to any vehicle suddenly cutting in from the side lane in front of the car. Analyze the changes in vehicle positions in each frame of the video and determine if any vehicle suddenly cuts in front of the car.);前车急刹车;Scraping(剐蹭); lane change(变道);紧急变道 (Emergency Lane Change);急变道 (Abrupt Lane Change); 失控(Loss of Control);overtaking(超车); Dangerous Overtaking(危险超车);Rapid Acceleration (急加速);sudden appearance(突然出现); passing through(穿过);斜穿(Diagonal Crossing);rapidly approaching(快速接近);Tailgating(跟车太近); Side-by-Side Close Proximit(侧面贴近);Wrong-Way Driving (逆行);Running Red Light (闯红灯)；撞车 (Collision.Estimate the distance between other car and self car, if too close then infer collision happening possibility);撞击 (Impact);Reversing (倒车);偏离车道 (Lane Departure), etc. \
+                                "key_actions": "List dangerous actions if detected from both 'summary' and 'actions'. 如果上面的'summary'里发现了关键行为，如突然停车、突然减速、超车/超过某车，就要列在key_actions里面，不要不报，否则就算一次失败的任务!!!! IF any key behavior is mentioned in the summary or actions, such as sudden braking, sudden deceleration, or vehicle stopping of both front/near-by cars and self car, or overtaking, you must report it in the key_actions,otherwise it is counted as a failed request. Do not omit such actions under any circumstances. Include the following actions but not limited to: Ghosting probing(鬼探头); cut in(加塞,pay special attention to any vehicle suddenly cutting in from the side lane in front of the car. Analyze the changes in vehicle positions in each frame of the video and determine if any vehicle suddenly cuts in front of the car.);前车急刹车;Scraping(剐蹭); lane change(变道);紧急变道 (Emergency Lane Change);急变道 (Abrupt Lane Change); 失控(Loss of Control);overtaking(超车); Dangerous Overtaking(危险超车);Rapid Acceleration (急加速);sudden appearance(突然出现); passing through(穿过);斜穿(Diagonal Crossing);rapidly approaching(快速接近);Tailgating(跟车太近); Side-by-Side Close Proximit(侧面贴近);Wrong-Way Driving (逆行);Running Red Light (闯红灯)；撞车 (Collision.Estimate the distance between other car and self car, if too close then infer collision happening possibility);撞击 (Impact);Reversing (倒车);偏离车道 (Lane Departure),转弯(make a turn),自车掉头(U-turn of the self vehicle),自车超车(Self vehicle overtaking), etc. \
                                     Pay special attention to any sudden or unexpected changes in the behavior of vehicles in the vicinity of the car, particularly those that may indicate a 'cut in' (加塞) or sudden deceleration. 'Cut in' refers to any vehicle that suddenly and forcefully merges into the lane in front of the car, potentially creating a hazard. Analyze the changes in vehicle positions in each frame of the video, especially if a vehicle moves into the lane directly in front of the car and decelerates. This includes recognizing situations where a vehicle that was previously in another lane suddenly moves in front of the car and reduces its speed significantly. Ensure to distinguish between normal lane changes and 'cut in' by assessing the urgency and impact on the car's safety. Analyze whether there is sufficient space for the vehicle to merge into your lane, and if so, classify this as a 'cut in' (加塞) in the key_actions. Example: If a vehicle suddenly moves from a side lane into the lane directly in front of the car and begins to decelerate rapidly, this should be identified as a 'cut in' (加塞) in the key actions. The key actions field should include 'cut in' when this behavior is detected, particularly if the distance between the two vehicles decreases sharply and the car needs to take evasive action to maintain safety. \
                                     Do not confuse sudden pedestrian appearance (ghost probing) with cutting in; the difference is that ghost probing(鬼探头) involves pedestrians or non-motorized vehicles suddenly appearing, while cutting in involves a vehicle forcibly merging into traffic. \
                                     Key actions should include what you see other cars' action and the car itself's key action based on your reasoning as well. Only fill in the field when detecting dangers that might impact the car itself driving, do not misuse!\
-                                    If multiple actions occur, list all of them and rank them according to the level of risk they pose to the vehicle.\
-                                    Before finalizing the key_actions, review the summary and actions to ensure that all critical behaviors mentioned there, such as sudden deceleration, stopping, or any other dangerous actions, are reflected in the key_actions. This step is mandatory to maintain consistency between summary and key_actions.Example: If the summary states that 'the silver car in front gradually slowed down and stopped then the key_actions must include sudden deceleration' or 'stopping' as key_actions. Ensure these key behaviors are consistently reflected in both summary and key_actions. 'key_actions' like 'sudden appearance' etc must be identified regardless of the sentiment or scene_theme context, ensure that this action is emphasized, you should prioritize identifying key_actions listed above. IF no above key_actions in the list are identified, just leave the field as '无危险行为'.", \
+                                    If multiple key actions occur, list all of them and rank them according to the level of risk they pose to the vehicle.\
+                                    Before finalizing the key_actions, review the summary and actions to ensure that all critical behaviors mentioned there, such as sudden deceleration, stopping, or any other dangerous actions, are reflected in the key_actions. This step is mandatory to maintain consistency between summary and key_actions.Example: If the summary states that 'the silver car in front gradually slowed down and stopped then the key_actions must include sudden deceleration' or 'stopping' as key_actions. Ensure these key behaviors are consistently reflected in both summary and key_actions. 'key_actions' like 'sudden appearance' etc must be identified regardless of the sentiment or scene_theme context, ensure that this action is emphasized, you should prioritize identifying key_actions listed above. IF no above key_actions in the list are identified or identified in \"Summary\" field, just leave the field as '无危险行为'.", \
                                 "next_action":"Predict next driving action (e.g., accelerate, brake, turn left, turn right, stop), considering key objects impacting driving action, use both transcript and frames to create a full picture, reason for the predicted next driving action. Note: \
                                     1) a.Confirm the positions of both the other vehicle and our vehicle at the end of the time interval. b)Consider the movement direction and speed of both vehicles during the interval. Based on these factors, determine the next action. \
                                         For example: The vehicle ahead moved from the right to the left within 5 seconds, and our vehicle is preparing to turn left, so the instruction should be to brake early to avoid a collision. \
@@ -264,7 +304,7 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):  #fpi is frames per interval, fi is 
                 "messages": [
                     {
                     "role": "system",
-                    "content": f"""You are VideoAnalyzerGPT analyzing a series of SEQUENCIAL images taken from a video, where each image represents a consecutive moment in time.Focus on the changes in the relative positions, distances, and speeds of objects, particularly the car in front. Pay special attention to any signs of deceleration or closing distance between the car in front and the observer vehicle. Describe any changes in the car's speed, distance from the observer vehicle, and how these might indicate a potential need for braking or collision avoidance. Based on the sequence of images, predict the next action that the observer vehicle should take. Consider the current distance between the front vehicle and self vehicle, the speed of the car in front, and any changes in these factors. If the car ahead is decelerating and the distance is closing rapidly, suggest whether braking is necessary to avoid a collision. Examine the sequential images for visual cues that indicate the car in front is decelerating, such as the appearance of brake lights or a reduction in the gap between the vehicles. Consider how these cues change from one frame to the next, and describe the need for the observer vehicle to take action, such as braking, based on these changes.
+                    "content": f"""You are VideoAnalyzerGPT analyzing a series of SEQUENCIAL images taken from a video, where each image represents a consecutive moment in time.Focus on the changes in the relative positions, distances, and speeds of objects, particularly the car in front and self vehicle. Pay special attention to any signs of deceleration or closing distance between the car in front and the observer vehicle(self car). Describe any changes in the car's speed, distance from the observer vehicle, and how these might indicate a potential need for braking or collision avoidance. Based on the sequence of images, predict the next action that the observer vehicle should take. Consider the current distance between the front vehicle and self vehicle, the speed of the car in front, and any changes in these factors. If the car ahead is decelerating and the distance is closing rapidly, suggest whether braking is necessary to avoid a collision. Examine the sequential images for visual cues that indicate the car in front is decelerating, such as the appearance of brake lights or a reduction in the gap between the vehicles. If the self car is overtaking the front car or an adjacent car, also summarize in the summary field. Don't ignore the self car's overtaking due to no danger happening, append in the summary and key_actions. Consider how these cues change from one frame to the next, and describe the need for the observer vehicle to take action, such as braking, based on these changes.
                     不要轻易使用”自车保持了与前车的安全距离“，前车与自车的安全距离判定要根据“两秒规则”（Two-Second Rule）: 不要判断图片中的前车和其他车之间的距离，只要判断自己车辆与前车之间的距离。
                     适用情况: 良好天气条件下的普通道路。
                     规则: 在车辆行驶时，选择前方车辆经过的某一个固定点，如路标或树木。当前方车辆经过该点时，开始计时，确保自己车辆经过该点时，至少已经过了两秒钟。这相当于在大多数情况下以两秒的时间作为安全距离。
@@ -275,7 +315,7 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):  #fpi is frames per interval, fi is 
                     frames over {frame_interval} seconds), which is generated from your analysis of each frame ({frames_per_interval} in total),
                     as well as the in-between audio, until we have a full action summary of the portion of the video you are considering,
                     that includes all actions taken by characters in the video as extracted from the frames. 
-                    Direction - Please identify the objects in the image based on their position in the image itself. Do not assume your own position within the image. Treat the left side of the image as 'left' and the right side of the image as 'right'. Assume the viewpoint is from the bottom center of the image. Describe whether the objects are on the left or right side of this central point, left is left, and right is right. For example, if there is a car on the left side of the image, state that the car is on the left.
+                    Direction - Please identify the objects in the image based on their position in the image itself. Do not assume your own position within the image. Treat the left side of the image as 'left' and the right side of the image as 'right'. Assume the viewpoint is standing from at the bottom center of the image. Describe whether the objects are on the left or right side of this central point, left is left, and right is right. For example, if there is a car on the left side of the image, state that the car is on the left.
                     Self and other vehicle movement determination  - please pay attention to determine whether it is the self-driving car or the other car that is moving:
                         1. Observe the relative position changes of background objects (such as road signs, buildings, etc.).
                         2. Check the relative position changes of vehicles in consecutive frames.
@@ -283,7 +323,7 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):  #fpi is frames per interval, fi is 
 
                     
                     **Task 1: Identify and Predict potential very near future time "Ghosting(专业术语：鬼探头)" 、Cut-in(加塞) .,etc Behavior**
-                    "Ghosting" behavior refers to a person suddenly darting out from either left or right side of the car itself and also from BEHIND an object that blocks the driver's view, such as a parked car, a tree, or a billboard, directly into the driver's path. 1)Note that people coming straight towards the car from front are not considered as 鬼探头, only those coming from visual blind spot of the car itself can be considered as 鬼探头. 2)Note that cut-in加塞 is different from 鬼探头,
+                    1)"Ghosting" behavior refers to a person suddenly darting out from either left or right side of the car itself and also from BEHIND an object that blocks the driver's view, such as a parked car, a tree, or a billboard, directly into the driver's path. 1)Note that people coming straight towards the car from front are not considered as 鬼探头, only those coming from visual blind spot of the car itself can be considered as 鬼探头. 2)Note that cut-in加塞 is different from 鬼探头,
                     Cutting In:
                         Definition: When a vehicle deliberately forces its way in front of another vehicle or into a traffic lane.开车加塞是指在行驶过程中，某辆车强行插入其他车辆的行驶路线，这种情况下一般是指距离非常近，从而影响其他车辆的正常行驶，甚至导致紧急刹车。如果行驶速度正常并且前后车的间隙明显不够，还强行加塞就属于恶意加塞。
                         Risk: Can lead to sudden braking and rear-end collisions.
@@ -301,7 +341,27 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):  #fpi is frames per interval, fi is 
                         Risk: High chance of collision due to the suddenness of the event. 
                     This behavior usually occurs when individuals, either not paying attention to the traffic conditions or in a hurry, 
                     suddenly obstruct the driver's view, creating an emergency situation with very little reaction time. This can easily lead to traffic accidents.
-                    
+                    2) Raising the parking barrier(抬杆) refer to the action of lifting a physical barrier, often found at the entrance or exit of parking lots, gated communities, or secured areas. This barrier controls vehicle access, and raising it allows vehicles to pass through. The barrier is typically operated manually by a security guard or automatically by a sensor or remote control. This process is essential for managing the flow of traffic and ensuring that only authorized vehicles can enter or exit the controlled area.
+                    There are the distinctions between the different states of the parking barrier, which are as follows, and you should put the exact state of the parking barrier in the "actions" field, and put "抬杆"/"落杆" in the "key_actions" field as a category,if both 抬杆and落杆happen in the same video,you should report both of them, eg,"抬杆, 落杆":
+                    一直抬起(continuously raised):
+                    the barrier remains fully lifted at all times. In this position, the barrier does not obstruct the passage of vehicles, typically indicating that the area is open for free access or that the control system is temporarily out of service and not functioning properly.
+                    抬起过程中 (In the Process of Raising barrier):
+                    The parking barrier is in the act of being lifted from a lower position toward the fully raised position. Vehicles cannot yet pass through as the barrier is not fully open.
+                    落下过程中 (In the Process of Lowering barrier):
+                    The parking barrier is in the act of being lowered from the fully raised position toward the closed position. Vehicles cannot pass through as the barrier is in motion and partially obstructs the path.
+                    一直关闭 (continuously Closed barrier)--如果闸杆一直没动，对应的动作和状态不是"落杆",而是"一直关闭",key_actions应该是空的:
+                    The parking barrier is completely lowered and positioned vertically or close to vertical, fully blocking the passage of vehicles. This prevents unauthorized entry or exit.
+                    Note that: 1.The normal sequence of raising and lowering the barrier is as follows: typically, the barrier remains in a continuously closed state. When a vehicle approaches, the barrier raises, entering the "in the process of raising" state. Once fully raised, it stays in the "continuously raised" state, allowing the vehicle to pass. Then, it gradually lowers, entering the "in the process of lowering" state, and finally returns to the "continuously closed" state. Detect the movement direction of the barrier in consecutive frames with progressively advancing timestamps. If the position of the barrier between two frames is gradually rising from a lower position to a higher position, it can be identified as the process of RAISING the barrier抬杆. If the position is gradually lowering from a higher position to a lower position, it can be identified as the process of LOWERING the barrier落杆.如果开始时闸杆是关闭状态且最终是打开状态，则这个过程应该是抬杆；反之则为落杆，不要混淆!!!!
+                         2.Don't confuse the garage's "rolling shutter door" with the "barrier gate." The rolling shutter door rolls up and down, while the barrier gate moves up and down; they are different. The rolling shutter door, when closed, presents a complete facade and is typically used to secure entrances like garages and shops.The key actions for the rolling shutter door should be called "door up" and "door down," not "bar up" and "bar down"!!!!!不要混淆车库的"卷闸门"和"抬杆"，卷闸门是上下卷动的，抬杆是上下移动的，两者不同。卷闸门在关闭时呈现为一个完整的门面，通常用于封闭车库、商店等出入口。卷闸门的key_actions应该叫"抬门","落门",卷闸门升降不要叫"抬杆","落杆"!!!!!
+                        3.If the barrier is in a continuously closed state, the key_actions field should be empty,no matter how the angle is changed to view it, and there is no action to report.The barrier arm will not necessarily lift just because it remains closed for a long time. Do not make incorrect assumptions.如果闸杆一直是水平也就是关闭状态，不论从哪个角度观察key_actions都应该是空的，没有动作需要报告,不要识别成"抬杆"，不要错误推测为闸杆一直关闭后就要抬起。
+
+                    3)U-turn of the self vehicle(自车掉头): The self vehicle makes a U-turn, reversing its direction by 180 degrees. This action is typically performed on wide roads or at intersections with a large turning radius. The U-turn is executed by turning the steering wheel to the left or right, depending on the direction of the desired turn, and completing a full rotation to face the opposite direction. This maneuver is used when the driver needs to change course or return to the starting point. Put "自车掉头" in the "key_actions" field if detected. Methods to identify a U-turn can be referenced by observing the following positional changes: a)Change in Vehicle Direction:Observe whether the vehicle's driving direction has made a significant 180-degree turn. A U-turn typically means the vehicle is turning completely in the opposite direction from its original path. This is the most direct sign of a U-turn.
+                    b)Steering Angle:Pay attention to the vehicle's steering during the turn. If the vehicle is making a large turn (usually close to 180 degrees), it is likely performing a U-turn.
+                    c) Lane Position: A U-turn usually occurs in the middle of the road, where the vehicle crosses from one lane to the opposite lane. Therefore, observe if the vehicle is moving from its original lane to the opposite lane.
+                    d)Change in the vehicle’s position relative to road signs or landmarks: A U-turn will cause a noticeable change in the vehicle’s relative position, such as moving from one side of a landmark to the other, or shifting from one lane to the opposite lane. These changes indicate a significant change in the vehicle’s direction.You need to identify that multiple small turns combined result in a total angle of 180 degrees, which is a characteristic of a vehicle's U-turn.车辆在掉头时可能不会立即进行一个明显的180度转弯，而是通过多个小幅度的方向调整逐渐完成掉头。这使得掉头的过程不易被迅速察觉，你要总结出多个小转弯合起来的角度达到180度，就是自车掉头的特征,这不是仅仅对视频画面的总结，而应该更进一步对打满方向盘的画面进行车头方向变化、方向盘转动角度、车窗外背景变化、车道变化等多种因子分析是否发生了掉头。
+
+                    4)Self vehicle overtaking(自车超车): The definition of a vehicle overtaking refers to the maneuver performed by the driver in which the vehicle accelerates to pass a slower-moving vehicle ahead from one side and then either returns to the original lane in front of that vehicle or continues driving in the other lane. Overtaking can also involve quickly passing a vehicle in an adjacent lane. In this case, the vehicle might not necessarily return to its original lane but may remain in the lane after overtaking. This action is typically done when the road ahead is safe and there is sufficient space to increase driving efficiency or avoid traffic congestion.Put "自车超车" in the "key_actions" field if detected, no matter if it is a dangerous action! If "overtaking" is in summary, you must put it in "key_actions"!!! Methods to identify a self car overtaking can be referenced by observing the following positional changes: a)Lane Change: Overtaking is typically accompanied by the vehicle changing lanes from one to an adjacent lane. On a dual-lane road, the vehicle will shift from the slow lane to the fast lane to overtake; on a single-lane, two-way road, the vehicle will briefly enter the oncoming lane to pass. b)Acceleration: During overtaking, the vehicle's speed usually increases to quickly pass the vehicle in front. c)Change in Distance to the Vehicle Ahead: A key indicator of overtaking is the noticeable reduction in the distance between the vehicle and the one ahead, followed by a swift pass and an increase in the distance from the overtaken vehicle.自车超车可能不是危险动作,只是为了提高行车效率或避免交通拥堵,但是无论是否危险,只要在summary中出现了"超车,超过前面的车"这种类似的词,你就必须在"key_actions"中报告这个动作!!!
+
                     Your angle appears to watch video frames recorded from a surveillance camera in a car. Your role should focus on detecting and predicting dangerous actions in a "Ghosting" manner
                     where pedestrians in the scene might suddenly appear in front of the current car. This could happen if the pedestrian suddenly darts out from behind an obstacle in the driver's view.
                     This behavior is extremly dangerous because it gives the driver very little time to react. 
@@ -390,20 +450,48 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):  #fpi is frames per interval, fi is 
                         平均速度（可选）:
                         “车辆的平均速度为45 km/h，但当前的速度为30 km/h。”
                         
+                        "summary": "停车场的抬杆正在处于缓慢抬起过程中的状态。",
+                        "actions": "抬杆处于"抬起过程中"状态。(抬起过程中要用双引号表示强调)",
+                        "key_objects": "闸杆",
+                        "key_actions": "抬杆",
+                        "next_action": "由于抬杆正在抬起过程中，建议司机等待抬杆完全抬起后再通过。下一步行动:速度控制: 等待, 方向控制: 保持方向, 车道控制: 保持在当前车道"                        
+                        
+                        "summary": "停车场的抬杆处于一直抬起状态。",
+                        "actions": "停车场的抬杆处于"一直抬起"状态。(一直抬起要用双引号表示强调)",
+                        "key_objects": "闸杆",
+                        "key_actions": "抬杆",
+                        "next_action": "由于抬杆一直处于抬起状态，建议司机立即通过停车杆。下一步行动:速度控制: 前进, 方向控制: 保持方向, 车道控制: 保持在当前车道"              
+
+                        "summary": "停车场的闸杆缓慢落下。",
+                        "actions": "停车场的闸杆处于"落下过程中"状态"。(注意要用双引号表示强调，注意要按照时间前进的顺序来判断，不要反过来)",
+                        "key_objects": "闸杆",
+                        "key_actions": "落杆",
+                        "next_action": "由于闸杆处于落下过程中状态，建议司机不要通过闸杆。下一步行动:速度控制: 等待, 方向控制: 保持方向, 车道控制: 保持在当前车道"                                      
+
+                        "summary": "停车场的闸杆一直关闭。",
+                        "actions": "停车场的闸杆处于"一直关闭"的水平状态"。(注意要用双引号表示强调)",
+                        "key_objects": "闸杆",
+                        "key_actions": "无",
+                        "next_action": "由于停车场的闸杆处于一直关闭状态，建议司机不要通过闸杆。下一步行动:速度控制: 等待, 方向控制: 保持方向, 车道控制: 保持在当前车道"      
+
+                        
+                        
                     # Few-shot learning metadata
                     Below are time series example images and their corresponding analysis to help you understand how to analyze and label the images:
-                    {fsl_payload} -> {assistant_response}
+                    {fsl_payload} -> {assistant_response_relativeposition}
+                    {lowerbar_fsl_payload} -> {assistant_response_lowerbar}
+                    {raisebar_fsl_payload} -> {assistant_response_raisebar}
                             
                     Use these examples to understand how to analyze and analyze the new images. Now generate a similar JSON response for the following video analysis:
                     """
                     },
                     {"role": "user", "content": cont}
                 ],
-                "max_tokens": 4000,
+                "max_tokens": 2000,
                 "seed": 42,
                 "temperature": 0
             }
-            response=send_post_request(vision_endpoint,vision_deployment,azure_vision_key,payload2)
+            response=send_post_request(vision_endpoint,vision_deployment,openai_api_key,payload2)
 
         else:
             headers = {
@@ -748,7 +836,14 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):  #fpi is frames per interval, fi is 
 #AnalyzeVideo("./medal.mp4",60,10)
 # AnalyzeVideo("Nuke.mp4",60,10,False)
 # AnalyzeVideo("复杂场景.mov",1,10) # 10 frames per interval, 1 second interval. fpi=10 is good for accurate analysis
-AnalyzeVideo("test_video/三轮车.mp4",4,10)
+# AnalyzeVideo("test_video/三轮车.mp4",4,10)
+# AnalyzeVideo("test_video/鬼探头2.mov",2,10)
+# AnalyzeVideo("test_video/0_cutin_aeb.mp4",2,10)
+# AnalyzeVideo("时序事件类/抬杆/负样本3.mp4",15,8)
+# AnalyzeVideo("trim落下.mp4",9,10)
+# AnalyzeVideo("时序事件类/横穿马路/负样本5.mp4",2,10)
+AnalyzeVideo("时序事件类/自车调头/正样本1.mp4",18,15)
+# AnalyzeVideo("时序事件类/自车超车/正样本1.mp4",8,10)
 
 # if __name__ == "__main__": 
      

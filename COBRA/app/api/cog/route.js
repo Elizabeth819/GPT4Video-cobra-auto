@@ -45,7 +45,8 @@ export async function POST(req) {
     // };
 
     // Perform the search
-    const searchResults = await client.search(messages,{queryType:"semantic",queryLanguage:"en-us",top:5,semanticConfiguration:"urban_scene_semantic_config"});
+    const searchResults = await client.search(messages,{queryType:"semantic",queryLanguage:"en-us",top:3,semanticConfiguration:"complex_scene_semantic_config"});
+    // const searchResults = await client.search(messages,{queryType:"semantic",queryLanguage:"en-us",top:5,semanticConfiguration:"urban_scene_semantic_config"});
     
     let docs=[]
     for await (const result of searchResults.results) {

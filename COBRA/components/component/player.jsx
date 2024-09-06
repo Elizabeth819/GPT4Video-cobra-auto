@@ -12,7 +12,7 @@ import { useChat } from 'ai/react'
 import axios from "axios"
 import { useState, useRef,useEffect,useMemo } from "react"
 import ReactPlayer from 'react-player';  
-import actionSummary from '../../app/data/actionSummary-三轮车-en.json'
+import actionSummary from '../../app/data/actionSummary.json'
 // import chapters from '../../app/data/chapterBreakdown.json'
 
 import Image from "next/image";
@@ -320,7 +320,8 @@ export function Player(props) {
     // const [videoURL,setVideoURL] = useState('./复杂场景.mov')
   // const [videoURL,setVideoURL] = useState('./P36-1在路上看见这种拉货的车.mp4')
   // const [videoURL,setVideoURL] = useState('./P36-2前方车辆发生剐蹭.mp4')  
-  const [videoURL,setVideoURL] = useState('./三轮车.mp4')
+  // const [videoURL,setVideoURL] = useState('./三轮车.mp4')
+  const [videoURL,setVideoURL] = useState('./抬杆正样本1.mp4')
   // const [videoURL,setVideoURL] = useState('./0_cutin_aeb.mp4')
   const videoSummaries = actionSummary
   

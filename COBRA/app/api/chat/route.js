@@ -41,6 +41,7 @@ export async function POST(req) {
     
 const searchResults = await client2.search(messages[messages.length-1].content, {queryType: "simple", queryLanguage: "en-us", top: 5});
 
+
     let docs=[]
     for await (const result of searchResults.results) {
       docs.push(result.document["content"]+"\n Source:"+result.document["source"])

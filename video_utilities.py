@@ -41,6 +41,15 @@ def resize_down_to_512_max_dim(image):
     new_size = (512 * w // h, 512) if (h > w) else (512, 512 * h // w)
     return cv2.resize(image, new_size, interpolation = cv2.INTER_LINEAR)
 
+def resize_down_to_256_max_dim(image):
+    h, w = image.shape[:2]
+    if (h < 256 and w < 256):
+        return image
+
+    new_size = (256 * w // h, 256) if (h > w) else (256, 256 * h // w)
+    return cv2.resize(image, new_size, interpolation = cv2.INTER_LINEAR)
+
+
 def resize_down_to_size_max_dim(image, size=512):
     h, w = image.shape[:2]
     if (h < size and w < size):
