@@ -11,7 +11,7 @@ from azure.search.documents.indexes.models import (
 
 # Replace with your Azure Search service and API key
 search_service_name = "video-cobra"
-admin_api_key = "Ja9lbzRSeohAQvBaJlfid6vtJdqBYittIzMGhYyKrrAzSeCAEZlt"
+admin_api_key = ""
 index_name = "c-index"
 json_file_path = "app/data/chapterBreakdown_ingest.json"  # Replace with your local JSON file path
 
