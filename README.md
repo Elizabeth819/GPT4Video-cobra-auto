@@ -22,7 +22,7 @@ Hi everyone, general information and format for each of the .env file is below. 
   - For ChapterAnalysis, in the code, change the video path and fi/fpi directly at the end of the script.
 
 ## Run Instructions Frontend:
-  - Linux shell: sudo apt install npm; npm install
+  - Linux shell: sudo apt install npm; npm install, npm install next
   - navigate to the COBRA folder and "npm run dev" to start the dev server
   - if there is a nextjs error, delete the .next folder from the file directory.
   - to run in production npm run build, and then npm start: npm run dev
@@ -31,7 +31,8 @@ Hi everyone, general information and format for each of the .env file is below. 
 
 ## Run Vector Search in Frontend searchbox:
   - Run ingest_scenes.py to create index and ingest actionSummary.json to AI Search
-    change json file name, index name, ai search endpoint/api key in ingest_scenes.py
+    change json file name, index name, ai search endpoint/api_key, aoai endpoint/key for embedding model deployment(text-embedding-003-large) in ingest_scenes.py
+  - Search service must be at least "**Standard**" pricing tier, otherwise cannot use 'semantic search'.
   - Modify app/api/cog/route.js: in last few lines, change semantic configuration name to the same as the semantic config used in the index creation json.
   - Modify index name in Cobra env file.
   - Search in the searchbox in a semantic way, get semantically similar results without having to exact match with keyword.
