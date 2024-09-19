@@ -35,7 +35,7 @@ Hi everyone, general information and format for each of the .env file is below. 
     change json file name, index name, ai search endpoint/api_key, aoai endpoint/key for embedding model deployment(text-embedding-003-large) in ingest_scenes.py
   - Search service must be at least "**Standard**" pricing tier, otherwise cannot use 'semantic search'.
   - Modify app/api/cog/route.js: in last few lines, change semantic configuration name to the same as the semantic config used in the index creation json in ingest_scenes.py.
-  - Modify index name in Cobra env file.
+  - Modify index name in Cobra env file the same as ingest_scenes.py.
   - Search in the searchbox in a semantic way, get semantically similar results without having to exact match with keyword.
 
 ## Containers:
