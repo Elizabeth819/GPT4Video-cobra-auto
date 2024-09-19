@@ -27,6 +27,7 @@ Hi everyone, general information and format for each of the .env file is below. 
   - if there is a nextjs error, delete the .next folder from the file directory.
   - to run in production npm run build, and then npm start: npm run dev
   - If using an Azure VM, add an inbound policy in settings, network, destination port 3000|TCP|Allow|priority=100
+  - in COBRA/components/component/player.jsx, changes: 1)line 15 change the name of actionSummary.json file, copy the json file to COBRA/app/data folder, 2)line 317 change the video file name in SetVideoURL, copy the video to COBRA/public folder, frontend will read from here.
   - Open in local web browser: localhost:3000, or connect to a remote VM: your-vm-public-ip:3000
 
 ## Run Vector Search in Frontend searchbox:
