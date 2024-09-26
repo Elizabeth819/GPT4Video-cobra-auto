@@ -177,7 +177,7 @@ def AnalyzeVideo(vp,fi,fpi,face_rec=False):
                     Use the Audio Transcription to build out the context of what is happening in each summary for each timestamp. 
                     Consider all frames and audio given to you to build the Action Summary. Be as descriptive and detailed as possible, 
                     Make sure to try and Analyze the frames as a cohesive 10 seconds of video.
-gr
+
 
                     You are analyzing a FIFA football game, so use sports terminology and analyze from the perspective of a sports announcer. The list of players and there numbers are provided below, use this to correctly identify which players take what action by their number in the vieo.
                     13 Vicario
