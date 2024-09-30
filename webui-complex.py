@@ -205,7 +205,7 @@ def AnalyzeVideo(vp,fi=5,fpi=5,face_rec=False):
                                     •闭眼检测：通过视觉分析检测儿童的眼睛是否关闭。如果眼睛长时间关闭，则判定为睡眠。
                                     •头部和身体姿势：检测头部是否向后倾斜，靠在椅背上，或朝向一侧，结合身体的放松姿态来判断是否进入睡眠。
                                     •帧间推理：跟踪多个连续帧中的头部和眼睛位置变化，确保头部和眼睛在较长时间内保持相同姿势。如果长时间检测到眼睛闭合和头部倾斜，判定为睡眠状态。
-                                    睡眠推理逻辑：
+                                睡眠推理逻辑：
                                     1加强睡眠推理过程：明确描述推断儿童是否处于睡眠状态的具体过程。例如，通过帧间检测是否有眼睛闭合、头部向后倾斜，以及身体是否处于放松状态。
                                     2.加强睡眠动作推理细节：不要只简单地标记“睡着了”，而是要报告每个相关的动作。例如：“儿童闭上眼睛，头部靠在椅背上，身体放松，双臂交叉在胸前或自然垂下。”
                                     3.加强睡眠的背景观察和推理：
@@ -703,20 +703,21 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(FRAME_FOLDER, exist_ok=True)
 
 ANALYSIS_JSON_PATH = "actionSummary.json"
+video_path = ""
 
 # 定义风险关键字
 medium_risk_keywords = [
     "头部靠着车窗","头部靠着车门", "手把着车门把手", "手搭车门上", "手伸出窗外"]
 medium_risk_keywords_seatbelt = ["解开安全带","没有系","未系","没系"]
 high_risk_keywords = [
-    "头伸出窗外", "身体伸出窗外"
+    "头伸出窗外", "头探出窗外", "身体伸出窗外","身体探出窗外", "身体向车外探出","探出身体到车外"
 ]
 # 根据风险等级设置颜色
 from fuzzywuzzy import fuzz
 # 使用fuzzywuzzy进行模糊匹配, 检测关键字
-def fuzzy_match_keywords(text, keywords, threshold=80):
+def fuzzy_match_keywords(text, keywords, threshold=90):
     for keyword in keywords:
-        similarity = fuzz.partial_ratio(text, keyword)
+        similarity = fuzz.token_sort_ratio(text, keyword)
         if similarity >= threshold:
             print(f"关键字匹配：{text} -> {keyword} ({similarity}%)")
             return True  # 如果相似度高于阈值，视为匹配
@@ -826,16 +827,17 @@ def update_child_info():
                     else:
                         combined_actions = ', '.join(risk_actions_list)
 
-                print(combined_actions)
+                # print(combined_actions)
 
                 # 添加风险信息
-                risk_warning = f"<span style='font-size: 18px; white-space: nowrap;'>关键动作: {combined_actions}<br>{set_risk_level_color(risk_level)}"
+                risk_warning = f"<span style='font-size: 18px; white-space: nowrap;'>危险动作: {combined_actions}<br>{set_risk_level_color(risk_level)}"
                 last_data = f"{child_info}<br>{risk_warning}"  # **更新上一次的内容**
                 
                 yield last_data  # **更新新的显示内容**
         else:
             yield last_data  # **保持默认值或上一次的内容**
         
+        print(video_path)
         time.sleep(2)  # **每 2 秒更新一次**
 
 # Function to handle video upload, process it, and update the analysis
@@ -843,7 +845,8 @@ def handle_video_upload(file_path):
     if not file_path:  # 如果没有文件上传，则返回提示
         return "没有上传任何文件"
     
-    print(file_path)
+    global video_path
+    video_path = file_path
     # 保存视频文件
     video_path = os.path.join(UPLOAD_FOLDER, os.path.basename(file_path))
     with open(file_path, "rb") as src, open(video_path, "wb") as dst:
