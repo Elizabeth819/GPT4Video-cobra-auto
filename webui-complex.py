@@ -717,7 +717,7 @@ from fuzzywuzzy import fuzz
 # 使用fuzzywuzzy进行模糊匹配, 检测关键字
 def fuzzy_match_keywords(text, keywords, threshold=90):
     for keyword in keywords:
-        similarity = fuzz.token_sort_ratio(text, keyword)
+        similarity = fuzz.partial_ratio(text, keyword)
         if similarity >= threshold:
             print(f"关键字匹配：{text} -> {keyword} ({similarity}%)")
             return True  # 如果相似度高于阈值，视为匹配
